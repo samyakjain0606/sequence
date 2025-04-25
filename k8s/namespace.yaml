@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sequence-game
+  labels:
+    name: sequence-game
+    app: sequence-game 

@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sequence-client
+  namespace: sequence-game
+  labels:
+    app: sequence-client
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sequence-client
+  template:
+    metadata:
+      labels:
+        app: sequence-client
+    spec:
+      containers:
+      - name: sequence-client
+        image: ${ECR_REPOSITORY_URI}/sequence-client:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.2"
+            memory: "256Mi"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5 

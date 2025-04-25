@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sequence-server
+  namespace: sequence-game
+  labels:
+    app: sequence-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sequence-server
+  template:
+    metadata:
+      labels:
+        app: sequence-server
+    spec:
+      containers:
+      - name: sequence-server
+        image: ${ECR_REPOSITORY_URI}/sequence-server:latest
+        ports:
+        - containerPort: 3001
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "512Mi"
+          requests:
+            cpu: "0.2"
+            memory: "256Mi"
+        readinessProbe:
+          tcpSocket:
+            port: 3001
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 3001
+          initialDelaySeconds: 15
+          periodSeconds: 20 

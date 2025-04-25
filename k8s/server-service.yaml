@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sequence-server-service
+  namespace: sequence-game
+  labels:
+    app: sequence-server
+spec:
+  selector:
+    app: sequence-server
+  ports:
+  - port: 3001
+    targetPort: 3001
+  type: ClusterIP 

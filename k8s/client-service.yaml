@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sequence-client-service
+  namespace: sequence-game
+  labels:
+    app: sequence-client
+spec:
+  selector:
+    app: sequence-client
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP 
