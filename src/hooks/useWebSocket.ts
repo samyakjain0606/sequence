@@ -112,6 +112,7 @@ export const useWebSocket = (url?: string): UseWebSocketReturn => {
       console.error('Error creating WebSocket connection:', error);
       setError('Failed to create WebSocket connection');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [wsUrl, isGameStarted, reconnectAttempt, gameId, playerId]);
 
   useEffect(() => {
@@ -121,6 +122,7 @@ export const useWebSocket = (url?: string): UseWebSocketReturn => {
         ws.close();
       }
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connect]);
 
   // Save game state to localStorage whenever relevant state changes

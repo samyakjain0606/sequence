@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { GameState, TokenType, Card, Position, Player } from '../models/types';
-import { placeToken, removeToken, getCardPositions } from '../utils/boardUtils';
-import { findCardOnBoard } from '../utils/cardUtils';
+import { GameState, TokenType, Position } from '../models/types';
+import { getCardPositions } from '../utils/boardUtils';
+// import { findCardOnBoard } from '../utils/cardUtils';
 import GameBoard from './GameBoard';
 import PlayerHand from './PlayerHand';
 import { LazyMotion, domAnimation, m } from 'framer-motion';
@@ -15,22 +15,22 @@ const containerStyles: React.CSSProperties = {
   position: 'relative', // For absolute positioning of the floating title
 };
 
-// CSS styles for floating title
-const floatingTitleStyles: React.CSSProperties = {
-  position: 'absolute',
-  left: '10px',
-  top: '50%',
-  transform: 'translateY(-50%) rotate(-90deg)',
-  transformOrigin: 'left center',
-  fontSize: '2.5rem',
-  fontWeight: 700,
-  color: 'rgba(255, 255, 255, 0.15)',
-  letterSpacing: '5px',
-  textTransform: 'uppercase',
-  pointerEvents: 'none',
-  zIndex: 0,
-  textShadow: '0 0 10px rgba(76, 175, 80, 0.2)',
-};
+// // CSS styles for floating title
+// const floatingTitleStyles: React.CSSProperties = {
+//   position: 'absolute',
+//   left: '10px',
+//   top: '50%',
+//   transform: 'translateY(-50%) rotate(-90deg)',
+//   transformOrigin: 'left center',
+//   fontSize: '2.5rem',
+//   fontWeight: 700,
+//   color: 'rgba(255, 255, 255, 0.15)',
+//   letterSpacing: '5px',
+//   textTransform: 'uppercase',
+//   pointerEvents: 'none',
+//   zIndex: 0,
+//   textShadow: '0 0 10px rgba(76, 175, 80, 0.2)',
+// };
 
 // CSS styles for status display
 const statusStyles: React.CSSProperties = {
@@ -133,7 +133,7 @@ const GameContainer: React.FC<GameContainerProps> = ({ gameState, onMove, curren
         setStatusMessage(`Waiting for ${activePlayer?.name || 'opponent'} to play...`);
       }
     }
-  }, [gameState?.currentTurn, isCurrentPlayerTurn]);
+  }, [gameState?.currentTurn, isCurrentPlayerTurn, gameState]);
 
   // Handle card selection
   const handleCardSelect = (index: number) => {
