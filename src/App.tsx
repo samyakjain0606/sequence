@@ -3,7 +3,7 @@ import './App.css';
 import GameLobby from './components/GameLobby';
 import GameContainer from './components/GameContainer';
 import { Position } from './models/types';
-import { useWebSocket, getWebSocketUrl } from './hooks/useWebSocket';
+import { useWebSocket } from './hooks/useWebSocket';
 import { motion } from 'framer-motion';
 import * as LocalStorage from './utils/localStorage';
 
